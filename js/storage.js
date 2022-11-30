@@ -55,7 +55,7 @@ window.onload = function () {
         }
         pEl.innerHTML = list;
 
-        document.querySelectorAll('#todo-tasks-list li button').forEach(function (item) {
+        document.querySelectorAll('#todo-tasks-list li button[class="btn remove-todo-btn"]').forEach(function (item) {
             item.addEventListener('click', function (event) {
                 let dataId = item.getAttribute('data-id');
                 removeItem(dataId);
@@ -64,7 +64,36 @@ window.onload = function () {
             });
 
         });
-        document.querySelectorAll('#todo-tasks-list li input').forEach(function (item) {
+
+        document.querySelectorAll('#todo-tasks-list li button[class="btn update-todo-btn"]').forEach(function (item) {
+            item.addEventListener('click', function (event) {
+                let dataId = item.getAttribute('data-id');
+                let div = document.createElement('div')
+                let input = document.createElement('input')
+                input.type = 'text'
+                input.classList.add('form-control')
+                input.classList.add('form-control-sm')
+                input.classList.add('w-50')
+                input.classList.add('position-absolute')
+                input.style.top = '0'
+                let i = document.createElement('i')
+                i.classList.add('fa-solid')
+                i.classList.add('fa-rectangle-xmark')
+                let btn = document.querySelector(`button[data-id="${dataId}"]`)
+                let prtElem = btn.parentElement.querySelector('label[class="control--checkbox"]')
+                prtElem.style.display = 'flex'
+                prtElem.style.gap = '10px'
+                prtElem.appendChild(input)
+                prtElem.appendChild(i)
+                btn.style.display = 'none'
+                // removeItem(dataId);
+                // updateText(dataId, 'Hello')
+                // syncLocalStorage();
+                // renderItems();
+            });
+
+        });
+        document.querySelectorAll('#todo-tasks-list li input[type="checkbox"]').forEach(function (item) {
             item.addEventListener('click', function (event) {
                 let dataId = item.getAttribute('data-id');
 
@@ -85,12 +114,13 @@ window.onload = function () {
     }
 
     function createItemTemplate(todo) {
-        var item = '<li class="todo-item ' + (todo.done ? 'done' : '') + '">';        
+        var item = '<li class="todo-item ' + (todo.done ? 'done' : '') + '">';
         item += '<label class="control--checkbox">';
         item += todo.task;
         item += '<input data-id="' + todo.id + '" type="checkbox" ' + (todo.done ? 'checked' : '') + ' />';
         item += '<div class="checked-icon"></div>';
         item += '</label>';
+        item += !todo.done ? '<button data-id="' + todo.id + '" class="btn update-todo-btn"><i class="fa fa-pencil">UPDATE</i></button>' : '';
         item += '<button data-id="' + todo.id + '" class="btn remove-todo-btn"><i class="fa fa-trash">DELETE</i></button>';
         item += '</li>';
 
@@ -112,6 +142,14 @@ window.onload = function () {
                 todos.splice(i, 1);
             }
         }
+    }
+    function updateText(id, value) {
+        for (var i = 0; i < todos.length; i++) {
+            if (todos[i].id == id) {
+                todos[i].task = value
+            }
+        }
+        console.log(todos)
     }
 
 };
