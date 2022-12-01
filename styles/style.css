@@ -1,4 +1,3 @@
-
 * {
   box-sizing: border-box;
 }
@@ -30,8 +29,8 @@ header input {
   color: #607d8b;
 }
 
-header input::placeholder{
-  color:#868e96;
+header input::placeholder {
+  color: #868e96;
 }
 
 .todos-box {
@@ -48,7 +47,7 @@ header input::placeholder{
   padding: 0;
 }
 
-.todo-item{
+.todo-item {
   position: relative;
   padding: 16px 12px;
   list-style: none;
@@ -69,31 +68,31 @@ header input::placeholder{
 
 .todo-item label {
   font-size: 14px;
-	position: relative;
-	margin: auto 0;
-	padding-left: 30px;
+  position: relative;
+  margin: auto 0;
+  padding-left: 30px;
   padding-top: 5px;
-	cursor: pointer;
+  cursor: pointer;
 }
 
-.todo-item input {
+.todo-item input[type="checkbox"] {
   display: none;
 }
 
-.checked-icon{
-	position: absolute;
-	top: 2px;
-	left: 0;
-	width: 20px;
-	height: 20px;
-	background-color: #e6e6e6;
+.checked-icon {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  background-color: #e6e6e6;
   transition: all .25s ease;
 }
 
 .checked-icon:after {
-	position: absolute;
-	display: none;
-	content: '';
+  position: absolute;
+  display: none;
+  content: '';
   top: 4px;
   left: 8px;
   width: 3px;
@@ -103,12 +102,12 @@ header input::placeholder{
   border-width: 0 2px 2px 0;
 }
 
-.todo-item input:checked ~ .checked-icon{
+.todo-item input:checked~.checked-icon {
   background-color: #2aa1c0;
   transition: all .25s ease;
 }
 
-.todo-item input:checked ~ .checked-icon:after{
+.todo-item input:checked~.checked-icon:after {
   display: block;
 }
 
@@ -123,11 +122,31 @@ header input::placeholder{
   outline: none;
 }
 
-.remove-todo-btn i{
+.update-todo-btn {
+  display: none;
+  position: absolute;
+  right: 50px;
+  top: 0;
+  bottom: 0;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
+
+.remove-todo-btn i {
   cursor: pointer;
   color: #465a6e;
 }
 
-.todo-item:hover .remove-todo-btn{
+.update-todo-btn i {
+  cursor: pointer;
+  color: #465a6e;
+}
+
+.todo-item:hover .remove-todo-btn {
+  display: block;
+}
+
+.todo-item:hover .update-todo-btn {
   display: block;
 }
