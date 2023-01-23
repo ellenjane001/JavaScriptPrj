@@ -51,6 +51,7 @@ header input::placeholder {
   position: relative;
   padding: 16px 12px;
   list-style: none;
+  -webkit-user-select: none;
   user-select: none;
   border-bottom: 1px solid #e8eef1;
 }
@@ -132,6 +133,27 @@ header input::placeholder {
   border: 0;
   outline: none;
 }
+.update-text-btn {
+  display: none;
+  position: absolute;
+  right: 50px;
+  top: 0;
+  bottom: 0;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
+
+.cancel-text-btn {
+  display: none;
+  position: absolute;
+  right: 12px;
+  top: 0;
+  bottom: 0;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
 
 .remove-todo-btn i {
   cursor: pointer;
@@ -144,6 +166,13 @@ header input::placeholder {
 }
 
 .todo-item:hover .remove-todo-btn {
+  display: block;
+}
+.todo-item:hover .cancel-text-btn {
+  display: block;
+}
+
+.todo-item:hover .update-text-btn {
   display: block;
 }
 
